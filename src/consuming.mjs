@@ -70,14 +70,15 @@ export function chainCatch() {
         return axios.get(`http://localhost:3000/addresses/${data.shippingAddress}`);
     })
     .then(({data}) => {
-        setText(`City: ${data.my.city}`);
+        setText(`City: ${data.city}`);
     })
     .catch(err => setText(err));
 }
 // --------------------
 
 
-// When you want code to run regardless of whether the promise is successful, use 
+// When you want code to run regardless of whether the promise is successful, use .finally().
+
 export function final() {
     showWaiting();
     axios.get("http://localhost:3000/orders/1")
@@ -85,8 +86,14 @@ export function final() {
         return axios.get(`http://localhost:3000/addresses/${data.shippingAddress}`);
     })
     .then(({data}) => {
-        setText(`City: ${data.my.city}`);
+        setText(`City: ${data.city}`);
     })
-    .catch(err => setText(err));
-    .finally()
+    .catch(err => setText(err))
+    .finally( () => {
+        setTimeout( () => {
+            hideWaiting();
+        }, 1500);
+
+        appendText(" -- Completely Done!");
+    })
 }
