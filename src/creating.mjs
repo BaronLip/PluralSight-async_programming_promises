@@ -1,5 +1,3 @@
-
-
 import setText, { appendText } from "./results.mjs";
 
 // A Promise is a built in Object within JavaScript.
@@ -42,6 +40,7 @@ export function interval(){
 }
 
 
+
 // In order to stop setInterval(). use clearInterval().
 export function clearIntervalChain(){
     let counter = 0
@@ -56,6 +55,7 @@ export function clearIntervalChain(){
     wait.then(text => setText(text))
     .finally(() => clearInterval(interval))
 }
+
 
 
 // XHR has it's own object property methods: open(), onload(), onerror(), send() are common ones. 
@@ -83,7 +83,6 @@ export function xhr(){
 // When you need to have multiple pieces of data from different sources, you can use a promises to make sure all the requests are fulfilled before invoking another action.
 // Promise.all() will wait for all Promises to complete before invoking .then(). Or, until the first Promise is rejected. 
 // Promise.all() takes GET requests as parameters.
-
 export function allPromises(){
     let categories = axios.get("http://localhost:3000/itemCategories");
     let statuses = axios.get("http://localhost:3000/orderStatuses");
@@ -106,7 +105,6 @@ export function allPromises(){
         setText(reasons);
     });
 }
-
 
 
 
@@ -140,6 +138,7 @@ export function allSettled(){
         setText(reasons);
     });
 }
+
 
 
 // .race() returns the fastest/first response received and ignores all the following. 
